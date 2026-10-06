@@ -1,7 +1,7 @@
 const TeacherAccount=require('../models/TeacherAccounts.js')
 
 const teacherCreateAccount = async(req,res) => {
-    const  {fullName,email,password,subject,phone,employeeId,department,designation}=req.body;
+    const  {fullName,employeeId,email,phone,gender,dateOfBirth,localAddress,permanentAddress,department,primarySubject,qualification,experience,assignClasses,contractType,dateOfJoining,salary,password}=req.body;
     try{
         const findemail=await TeacherAccount.findOne({email})
         if(findemail)
@@ -12,13 +12,22 @@ const teacherCreateAccount = async(req,res) => {
         }
         const response = await TeacherAccount.create({
               fullName,
-              email,
-              password,
-              subject,
-              phone,
               employeeId,
+              email,
+              phone,
+              gender,
+              dateOfBirth,
+              localAddress,
+              permanentAddress,
               department,
-              designation
+              primarySubject,
+              qualification,
+              experience,
+              assignClasses,
+              contractType,
+              dateOfJoining,
+              salary,
+              password
     })
     res.status(201).json({
         data:response,
