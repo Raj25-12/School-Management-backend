@@ -5,7 +5,7 @@ const createClass = async(req,res)=>{
     try{
         const response=await ClassModel.create({
             className,
-            section
+            section,
         })
         res.status(201).json({
             data:response,

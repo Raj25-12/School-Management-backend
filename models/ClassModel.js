@@ -13,7 +13,7 @@ const classSchema=mongoose.Schema({
 
       teacher:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"TeacherAccounts",
+        ref:"TeacherAccount",
         default:null
       }
 })

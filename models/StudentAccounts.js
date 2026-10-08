@@ -19,7 +19,8 @@ const StudentAccountSchema=mongoose.Schema({
     },
 
     studentClass:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Class",
         required:true,
     },
 
