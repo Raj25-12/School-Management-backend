@@ -6,6 +6,7 @@ const StudentAccountSchema=mongoose.Schema({
         required:true
     },
 
+    
     email:{
         type:String,
         required:true,

@@ -63,7 +63,7 @@ const teacherAccountSchema=mongoose.Schema({
     qualification:{
         type:String,
         required:true,
-        enum: ["B.Tech", "M.Tech", "BCA", "MCA", "B.Sc", "M.Sc", "PhD"]
+        // enum: ["B.Tech", "M.Tech", "BCA", "MCA", "B.Sc", "M.Sc", "PhD"]
     },
 
     experience:{
@@ -71,16 +71,10 @@ const teacherAccountSchema=mongoose.Schema({
         required:true
     },
 
-    assignClasses:{
-        type:String,
-        required:true,
-        enum:["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
-    },
-
     contractType:{
         type:String,
         required:true,
-        enum:["Full Time","Part Time","InternShip Period"]
+        enum:["Full Time(Permanent)","Part Time","InternShip Period"]
     },
 
     dateOfJoining:{

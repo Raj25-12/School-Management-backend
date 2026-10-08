@@ -1,7 +1,7 @@
 const TeacherAccount=require('../models/TeacherAccounts.js')
 
 const teacherCreateAccount = async(req,res) => {
-    const  {fullName,employeeId,email,phone,gender,dateOfBirth,localAddress,permanentAddress,department,primarySubject,qualification,experience,assignClasses,contractType,dateOfJoining,salary,password}=req.body;
+    const  {fullName,employeeId,email,phone,gender,dateOfBirth,localAddress,permanentAddress,department,primarySubject,qualification,experience,contractType,dateOfJoining,salary,password}=req.body;
     try{
         const findemail=await TeacherAccount.findOne({email})
         if(findemail)
@@ -23,7 +23,6 @@ const teacherCreateAccount = async(req,res) => {
               primarySubject,
               qualification,
               experience,
-              assignClasses,
               contractType,
               dateOfJoining,
               salary,
@@ -42,7 +41,7 @@ const teacherCreateAccount = async(req,res) => {
     }
 }
 
-const teacherLogin =async (req,res) =>{
+const teacherLoginAccount =async (req,res) =>{
      const {email,password}=req.body;
      try{
         const response=await TeacherAccount.findOne({email})
@@ -76,4 +75,47 @@ const teacherLogin =async (req,res) =>{
 
 }
 
-module.exports={teacherCreateAccount,teacherLogin}
+const getAllTeachersAccount=async(req,res) =>{
+       try{
+          const response= await TeacherAccount.find();
+
+          res.status(201).json({
+            message:"All Teachers",
+            data:response
+          })
+       }
+       catch(error)
+       {
+          res.status(500).json({
+            message:"Something went wrong"
+          })
+       }
+
+}
+
+const teacherDeleteAccount = async (req,res) =>{
+     const {email}=req.body
+     try{
+        const response =await TeacherAccount.findOne({email})
+        if(response){
+            const deleteAccount=await TeacherAccount.findOneAndDelete({_id:response._id})
+             res.status(201).json({
+            message:"Successfully Deleted"
+        })
+        }
+        else{
+            res.status(401).json({
+                message:"Teacher does not exist"
+            })
+        }
+     }
+     catch(error)
+     {
+        res.status(500).json({
+            message:"Something went wrong"
+        })
+     }
+
+}
+
+module.exports={teacherCreateAccount,teacherLoginAccount,teacherDeleteAccount,getAllTeachersAccount}
